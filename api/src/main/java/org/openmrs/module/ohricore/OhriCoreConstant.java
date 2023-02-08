@@ -7,6 +7,8 @@ public final class OhriCoreConstant {
 	
 	public static final String MUTEX_QUERY_LABRESULTS = "QUERY LAB RESULTS MUTEX";
 	
+	public static final String MUTEX_UPDATE_LUCENE_INDEXES = "UPDATE LUCENE INDEXES MUTEX";
+	
 	public static final String FHIR_SANDBOX_URL = "https://oh-route.gicsandbox.org/fhir";
 	
 	public static final String FHIR_COMPLETED_OHRI_TASKS = "/Task?owner=Organization/101283&status=completed&_count=999";
@@ -67,9 +69,21 @@ public final class OhriCoreConstant {
 	
 	public static final String OHRI_ENCOUNTER_SYSTEM = "OHRI_ENCOUNTER_UUID";
 	
+	public static final String NATIONAL_ID_SYSTEM = "http://ohie.org/National_ID";
+	
+	public static final String HEALTH_ID_SYSTEM = "http://ohie.org/Health_ID";
+	
+	public static final String HEALTH_FACILITY_ID_SYSTEM = "http://ohie.org/Health_Facility";
+	
 	public static final String GP_PARENT_SERVER_URL = "ohricore.fhir.sandbox.url";
 	
 	public static final String GP_PARENT_SERVER_USERNAME = "";
+	
+	public static final String GP_MPI_SERVER_URL = "ohricore.mpi.namibia.server.url";
+	
+	public static final String GP_MPI_CLIENT_ID = "ohricore.mpi.namibia.server.clientid";
+	
+	public static final String GP_MPI_CLIENT_SECRET = "ohricore.mpi.namibia.server.clientsecret";
 	
 	public static final String CONCEPT_MAPPING_CIEL = "CIEL";
 	

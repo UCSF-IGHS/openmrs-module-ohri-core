@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <module configVersion="1.2">
-	
+
 	<!-- Base Module Properties -->
 	<id>${project.parent.artifactId}</id>
 	<name>${project.parent.name}</name>
@@ -19,9 +19,16 @@
   
 	<require_version>${openmrsPlatformVersion}</require_version>
 
+	<!-- Required Privileges  -->
+	<privilege>
+		<name>Get Patients</name>
+		<description>Base privilege for all External patient operations</description>
+	</privilege>
+
 	<!-- Required Modules -->
 	<require_modules>
 		<require_module version="${fhir2Version}">${project.parent.groupId}.fhir2</require_module>
+		<require_module>org.openmrs.module.webservices.rest</require_module>
 	</require_modules>
 	<!-- / Required Modules -->
 
@@ -53,8 +60,8 @@
 	</advice>
 
 	<advice>
-		<point>org.openmrs.api.EncounterService</point>
-		<class>org.openmrs.module.ohricore.aop.EncounterInterceptorAdvice</class>
+		<point>org.openmrs.api.PatientService</point>
+		<class>org.openmrs.module.ohricore.aop.PatientInterceptorAdvice</class>
 	</advice>
 
 <!--	<advice>-->

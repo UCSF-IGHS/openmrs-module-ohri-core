@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * 'module/${rootArtifactid}/${rootArtifactid}Link.form'.
  */
 
-@Controller
+@Controller("ohriCoreController")
 public class OHRICoreController {
 	
 	/** Logger for this class and subclasses */
@@ -46,7 +46,7 @@ public class OHRICoreController {
 	 * 
 	 * @return String form view name
 	 */
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/module/ohricore", method = RequestMethod.GET)
 	public String onGet() {
 		return VIEW;
 	}
@@ -59,7 +59,7 @@ public class OHRICoreController {
 	 * @param errors
 	 * @return
 	 */
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/module/ohricore", method = RequestMethod.POST)
 	public String onPost(HttpSession httpSession, @ModelAttribute("anyRequestObject") Object anyRequestObject,
 	        BindingResult errors) {
 		

@@ -11,15 +11,13 @@ package org.openmrs.module.ohricore;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.openmrs.api.context.Context;
 import org.openmrs.api.db.ContextDAO;
 import org.openmrs.module.BaseModuleActivator;
 import org.openmrs.module.ohricore.task.QueryLabResultsTask;
+import org.openmrs.module.ohricore.task.UpdateLuceneIndexesTask;
 import org.openmrs.scheduler.SchedulerService;
 import org.openmrs.scheduler.TaskDefinition;
-
-import org.springframework.core.task.TaskExecutor;
 
 /**
  * This class contains the logic that is run every time this module is either started or shutdown
@@ -36,9 +34,6 @@ public class OHRICoreActivator extends BaseModuleActivator {
 	 * @see #started()
 	 */
 	public void started() {
-		ContextDAO contextDAO = (ContextDAO) Context.getRegisteredComponents(ContextDAO.class).get(0);
-		// Refresh Lucene indexes
-		contextDAO.updateSearchIndex();
 		log.info("Started OHRICore");
 	}
 	
@@ -57,7 +52,14 @@ public class OHRICoreActivator extends BaseModuleActivator {
 		String taskClassName = QueryLabResultsTask.class.getName();
 		String description = "Query Lab Results Task - DISI";
 		
+		String namibiaLuceneIndexUpdateTaskName = "Update Namibia Lucene Indexes";
+		Long namibiaLuceneRepeatInterval = 31536000L; //second
+		String namibiaLuceneTaskClassName = UpdateLuceneIndexesTask.class.getName();
+		String namibiaLuceneDescription = "Update Namibia Lucene Indexes task";
+		
 		addTask(taskName, taskClassName, repeatInterval, description);
+		addTask(namibiaLuceneIndexUpdateTaskName, namibiaLuceneTaskClassName, namibiaLuceneRepeatInterval,
+		    namibiaLuceneDescription);
 	}
 	
 	@Override
@@ -67,7 +69,13 @@ public class OHRICoreActivator extends BaseModuleActivator {
 	
 	@Override
 	public void willRefreshContext() {
+		
 		super.willRefreshContext();
+		/*
+		System.out.println("Refresh Lucene indexes...");
+		ContextDAO contextDAO = Context.getRegisteredComponents(ContextDAO.class).get(0);
+		contextDAO.updateSearchIndex();// Refresh Lucene indexes
+		*/
 	}
 	
 	@Override
